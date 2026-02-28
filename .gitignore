@@ -1,7 +1,41 @@
-mcp.json
-*.json
-__pycache__/
-venv/
-.dccache
+#################################
+# Compiled source               #
+#################################
+build/
 
+#################################
+# Golang files (with tooling)   #
+#################################
+/tools/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
 
+#################################
+# IDE generated files           #
+#################################
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+*.ipr
+*.iws
+
+#################################
+# Logs and temp files           #
+#################################
+*.log
+*.tmp
+*~
+
+#################################
+# OS generated files            #
+#################################
+Thumbs.db
+.directory
+.DS_Store

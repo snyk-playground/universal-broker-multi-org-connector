@@ -1,0 +1,28 @@
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - copyloopvar
+    - durationcheck
+    - godot
+    - govet
+    - ineffassign
+    - makezero
+    - misspell
+    - nilerr
+    - predeclared
+    - staticcheck
+    - unconvert
+    - unused
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+
+output:
+  formats:
+    tab:
+      path: stdout
+      colors: false
