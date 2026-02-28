@@ -52,7 +52,7 @@ func NewConfig() (*Config, error) {
 			}
 			viper.SetDefault("api.region", "SNYK-US-01")
 			viper.SetDefault("api.token", "")
-			viper.SetDefault("logging.format", "text")
+			viper.SetDefault("logging.format", "json")
 			viper.SetDefault("logging.level", "warn")
 
 			// write config file in YAML format

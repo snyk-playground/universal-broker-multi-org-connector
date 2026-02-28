@@ -18,9 +18,7 @@ type groupListOpts struct {
 }
 
 func newCmdGroupList(bma *app.BrokerMOCApp) *cobra.Command {
-	opts := &groupListOpts{
-		bma: bma,
-	}
+	opts := &groupListOpts{bma: bma}
 
 	cmd := &cobra.Command{
 		Use:   "list",
@@ -29,7 +27,7 @@ func newCmdGroupList(bma *app.BrokerMOCApp) *cobra.Command {
 
 		Aliases: []string{"ls"},
 
-		RunE: func(cmd *cobra.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, _ []string) error {
 			return runGroupList(cmd.Context(), opts)
 		},
 	}
@@ -43,7 +41,7 @@ func runGroupList(ctx context.Context, opts *groupListOpts) error {
 	client := opts.bma.APIClient
 	log := opts.bma.Logger
 
-	var groups output.Groups
+	var groups []output.Group
 
 	s := newSpinner(ctx, "Querying for groups...")
 	if opts.bma.Config.Logging.Level == "debug" {
@@ -79,7 +77,7 @@ func runGroupList(ctx context.Context, opts *groupListOpts) error {
 	if err != nil {
 		return err
 	}
-	result, err := f.Format(groups)
+	result, err := f.Format(output.GroupsView{Groups: groups})
 	if err != nil {
 		return err
 	}

@@ -12,15 +12,17 @@ type Group struct {
 	CreatedAt time.Time `json:"created_at" yaml:"created_at"`
 }
 
-type Groups []Group
+type GroupsView struct {
+	Groups []Group `json:"groups" yaml:"groups"`
+}
 
-func (gs Groups) Headers() []any {
+func (v GroupsView) Headers() []any {
 	return []any{"NAME", "GROUP ID", "SLUG", "CREATED"}
 }
 
-func (gs Groups) Rows() [][]any {
-	rows := make([][]any, 0, len(gs))
-	for _, g := range gs {
+func (v GroupsView) Rows() [][]any {
+	rows := make([][]any, 0, len(v.Groups))
+	for _, g := range v.Groups {
 		rows = append(rows, []any{
 			g.Name,
 			g.ID,

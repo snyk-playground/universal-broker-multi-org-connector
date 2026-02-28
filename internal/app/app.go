@@ -18,7 +18,7 @@ type BrokerMOCApp struct {
 }
 
 func New(cfg *Config, version string) (*BrokerMOCApp, error) {
-	logger := configureLogger(cfg)
+	logger := configureLogger(cfg, version)
 
 	apiClient, err := configureAPIClient(cfg, version)
 	if err != nil {
@@ -33,7 +33,7 @@ func New(cfg *Config, version string) (*BrokerMOCApp, error) {
 	}, nil
 }
 
-func configureLogger(cfg *Config) *slog.Logger {
+func configureLogger(cfg *Config, version string) *slog.Logger {
 	var logLevel slog.Level
 	switch cfg.Logging.Level {
 	case "warn":
@@ -61,6 +61,7 @@ func configureLogger(cfg *Config) *slog.Logger {
 	default:
 		handler = slog.NewTextHandler(os.Stdout, handlerOpts)
 	}
+	handler = handler.WithAttrs([]slog.Attr{slog.String("version", version)})
 
 	return slog.New(handler)
 }
