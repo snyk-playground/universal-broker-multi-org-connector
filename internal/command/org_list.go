@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"slices"
 
 	"github.com/spf13/cobra"
 
@@ -12,10 +13,10 @@ import (
 )
 
 type orgListOpts struct {
-	bma     *app.BrokerMOCApp
-	groupID string
-	format  string
-	output  string
+	bma      *app.BrokerMOCApp
+	groupIDs []string
+	format   string
+	output   string
 }
 
 func newCmdOrgList(bma *app.BrokerMOCApp) *cobra.Command {
@@ -32,7 +33,7 @@ func newCmdOrgList(bma *app.BrokerMOCApp) *cobra.Command {
 			return runOrgList(cmd.Context(), opts)
 		},
 	}
-	cmd.Flags().StringVarP(&opts.groupID, "group-id", "", "", "filter organization by group id")
+	cmd.Flags().StringArrayVar(&opts.groupIDs, "group-id", []string{}, "filter organization by group id (can be repeated)")
 	cmd.Flags().StringVarP(&opts.format, "format", "f", "table", "output format (json, yaml, table)")
 	cmd.Flags().StringVarP(&opts.output, "output", "o", "", "write output to file instead of stdout")
 
@@ -53,9 +54,9 @@ func runOrgList(ctx context.Context, opts *orgListOpts) error {
 	log.Debug("Listing accessible organizations")
 	orgsAPI, errf := client.Orgs.AllAccessibleOrgs(ctx, nil)
 	for orgAPI := range orgsAPI {
-		if opts.groupID != "" {
-			if orgAPI.Attributes.GroupID != opts.groupID {
-				log.Debug("Skip organization because it's not part of the group", "group_id", opts.groupID, "org", orgAPI)
+		if len(opts.groupIDs) > 0 {
+			if !slices.Contains(opts.groupIDs, orgAPI.Attributes.GroupID) {
+				log.Debug("Skip organization because it's not part of the group", "group_ids", opts.groupIDs, "org", orgAPI)
 				continue
 			}
 		}
