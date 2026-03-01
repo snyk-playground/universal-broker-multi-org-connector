@@ -34,8 +34,8 @@ github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWE
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
 github.com/mattn/go-runewidth v0.0.20 h1:WcT52H91ZUAwy8+HUkdM3THM6gXqXuLJi9O3rjcQQaQ=
 github.com/mattn/go-runewidth v0.0.20/go.mod h1:XBkDxAl56ILZc9knddidhrOlY5R/pDhgLpndooCuJAs=
-github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260225224904-2a85fb31fa54 h1:ttPFu2t3+z6NGiZpkb4uHIw6aYCUH/kvvozSZmQLYTw=
-github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260225224904-2a85fb31fa54/go.mod h1:7E28mxL/T/EA3hMo9Fa0FjYuLDq0uUKJFB05oaaPoog=
+github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260301004312-50b140348e2a h1:r+CEq9OgyCH/RoAl8MzVC3cb1hfjTwDelPVBlnXsXug=
+github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260301004312-50b140348e2a/go.mod h1:7E28mxL/T/EA3hMo9Fa0FjYuLDq0uUKJFB05oaaPoog=
 github.com/pelletier/go-toml/v2 v2.2.4 h1:mye9XuhQ6gvn5h28+VilKrrPoQVanw5PMw/TB0t5Ec4=
 github.com/pelletier/go-toml/v2 v2.2.4/go.mod h1:2gIqNv+qfxSVS7cM2xJQKtLSTLUE9V8t9Stt+h56mCY=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

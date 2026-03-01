@@ -10,6 +10,7 @@ type Org struct {
 	Name      string    `json:"name" yaml:"name"`
 	Slug      string    `json:"slug" yaml:"slug"`
 	GroupID   string    `json:"group_id" yaml:"group_id"`
+	TenantID  string    `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 	CreatedAt time.Time `json:"created_at" yaml:"created_at"`
 }
 

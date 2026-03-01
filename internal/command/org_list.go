@@ -52,21 +52,28 @@ func runOrgList(ctx context.Context, opts *orgListOpts) error {
 
 	log.Debug("Listing accessible organizations")
 	orgsAPI, errf := client.Orgs.AllAccessibleOrgs(ctx, nil)
-	for orgAPI, resp := range orgsAPI {
-		log.Debug("Got organization", "org", orgAPI, "snyk_request_id", resp.SnykRequestID)
-
+	for orgAPI := range orgsAPI {
 		if opts.groupID != "" {
 			if orgAPI.Attributes.GroupID != opts.groupID {
-				log.Debug("Skip organization because it's not part of the group", "group_id", opts.groupID)
+				log.Debug("Skip organization because it's not part of the group", "group_id", opts.groupID, "org", orgAPI)
 				continue
 			}
 		}
+
+		orgID := orgAPI.ID
+		orgAPI, resp, err := client.Orgs.Get(ctx, orgID, nil)
+		if err != nil {
+			s.Stop()
+			return fmt.Errorf("unable to get organization with id '%s': %w", orgID, err)
+		}
+		log.Debug("Got organization with enriched properties", "org", orgAPI, "snyk_request_id", resp.SnykRequestID)
 
 		orgs = append(orgs, output.Org{
 			ID:        orgAPI.ID,
 			Name:      orgAPI.Attributes.Name,
 			Slug:      orgAPI.Attributes.Slug,
 			GroupID:   orgAPI.Attributes.GroupID,
+			TenantID:  orgAPI.Relationships.Tenant.Data.ID,
 			CreatedAt: orgAPI.Attributes.CreatedAt,
 		})
 	}

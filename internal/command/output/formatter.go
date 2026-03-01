@@ -30,7 +30,7 @@ func NewFormatter(format Format) (Formatter, error) {
 		return &JSONFormatter{Indent: "  "}, nil
 	case FormatTable:
 		return &TableFormatter{
-			MaxColWidth: 80,
+			MaxColWidth: 50,
 			Separator:   "   ",
 		}, nil
 	case FormatYAML:

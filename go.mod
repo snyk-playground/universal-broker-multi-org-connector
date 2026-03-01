@@ -6,7 +6,7 @@ require (
 	github.com/adrg/xdg v0.5.3
 	github.com/goccy/go-yaml v1.19.2
 	github.com/gosuri/uitable v0.0.4
-	github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260225224904-2a85fb31fa54
+	github.com/pavel-snyk/snyk-sdk-go/v2 v2.0.0-20260301004312-50b140348e2a
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 	github.com/yarlson/pin v0.9.1
