@@ -24,6 +24,7 @@ connections at scale, ensuring consistent setup and reducing manual overhead.
 	cmd.SetHelpCommand(&cobra.Command{Hidden: true})
 
 	// commands
+	cmd.AddCommand(newCmdConnection(bma))
 	cmd.AddCommand(newCmdGroup(bma))
 	cmd.AddCommand(newCmdOrg(bma))
 
