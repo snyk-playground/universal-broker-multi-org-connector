@@ -11,8 +11,8 @@ func NewRootCmd(bma *app.BrokerMOCApp) *cobra.Command {
 		Use:   "broker-moc",
 		Short: "Broker MOC CLI",
 		Long: `
-A tool to manage and integrate Snyk Universal Broker connections across
-multiple Snyk organizations.
+broker-moc is a tool to manage and integrate Snyk Universal Broker connections
+across multiple Snyk organizations.
 
 The Multi-Org Connector (MOC) simplifies the process of maintaining broker
 connections at scale, ensuring consistent setup and reducing manual overhead.
