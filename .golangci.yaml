@@ -3,9 +3,13 @@ version: "2"
 linters:
   default: none
   enable:
+    - bodyclose
     - copyloopvar
     - durationcheck
     - godot
+    - errcheck
+    - errorlint
+    - gosec
     - govet
     - ineffassign
     - makezero
