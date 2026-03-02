@@ -64,7 +64,7 @@ func newCmdConnectionIntegrate(bma *app.BrokerMOCApp) *cobra.Command {
 	cmd.Flags().StringVarP(&opts.input, "input", "i", "", "input file with organizations to integrate (yaml or json)")
 	cmd.Flags().StringVarP(&opts.format, "format", "f", "yaml", "output format (json, yaml)")
 	cmd.Flags().StringVarP(&opts.output, "output", "o", "", "write output to file instead of stdout")
-	cmd.Flags().StringVar(&opts.output, "tenant-id", "", "tenant id")
+	cmd.Flags().StringVar(&opts.tenantID, "tenant-id", "", "tenant id")
 	_ = cmd.MarkFlagRequired("connection-type")
 	_ = cmd.MarkFlagRequired("input")
 
@@ -131,10 +131,10 @@ func runConnectionIntegrate(ctx context.Context, opts *connectionIntegrateOpts) 
 				"error", err,
 			)
 			integrations = append(integrations, output.Integration{
-				ID:             brokerIntegration.ID,
+				ID:             "<none>",
 				ConnectionID:   opts.connectionID,
 				ConnectionType: opts.connectionType,
-				OrgID:          brokerIntegration.OrgID,
+				OrgID:          org.ID,
 				OrgName:        org.Name,
 				TenantID:       org.TenantID,
 				Status:         "error",
