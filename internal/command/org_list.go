@@ -94,7 +94,7 @@ func runOrgList(ctx context.Context, opts *orgListOpts) error {
 	}
 
 	if opts.output != "" {
-		return os.WriteFile(opts.output, []byte(result), 0644)
+		return os.WriteFile(opts.output, []byte(result), 0600)
 	}
 	fmt.Println(result)
 

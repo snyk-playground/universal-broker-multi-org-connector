@@ -46,7 +46,7 @@ func NewConfig() (*Config, error) {
 	if err != nil {
 		if _, ok := errors.AsType[viper.ConfigFileNotFoundError](err); ok {
 			// no config at all, write default one
-			err := os.MkdirAll(brokerMOCConfigDir(), 0755)
+			err := os.MkdirAll(brokerMOCConfigDir(), 0750)
 			if err != nil {
 				return nil, fmt.Errorf("failed to create config folder: %w", err)
 			}

@@ -174,7 +174,7 @@ func runConnectionIntegrate(ctx context.Context, opts *connectionIntegrateOpts) 
 	fmt.Println("------------------------------------------------------------")
 
 	if opts.output != "" {
-		return os.WriteFile(opts.output, []byte(result), 0644)
+		return os.WriteFile(opts.output, []byte(result), 0600)
 	}
 	fmt.Println(result)
 
@@ -182,12 +182,13 @@ func runConnectionIntegrate(ctx context.Context, opts *connectionIntegrateOpts) 
 }
 
 func readOrganizationsFromInputFile(path string, view *output.OrgsView) error {
-	data, err := os.ReadFile(path)
+	safePath := filepath.Clean(path)
+	data, err := os.ReadFile(safePath)
 	if err != nil {
 		return err
 	}
 
-	ext := strings.ToLower(filepath.Ext(path))
+	ext := strings.ToLower(filepath.Ext(safePath))
 	switch ext {
 	case ".json":
 		return json.Unmarshal(data, view)
