@@ -56,6 +56,8 @@ To view all accessible organizations:
 $ broker-moc org list
 ```
 
+<img alt="list accessible organizations" src=".github/cmd_org_list.gif" />
+
 To filter organizations by specific groups, provide the `--group-id` flag (repeatable):
 
 ```bash
@@ -122,6 +124,8 @@ $ broker-moc connection integrate <your-connection-id> \
 ------------------------------------------------------------
 ```
 
+<img alt="integrate connection to multiple organizations" src=".github/cmd_connection_integrate.gif" />
+
 <details>
 <summary>Example: snyk_connected_integrations.yaml</summary>
 
@@ -167,6 +171,8 @@ $ broker-moc connection disconnect <your-connection-id> \
    failed disconnections:     0
 ------------------------------------------------------------
 ```
+
+<img alt="disconnect connection from multiple integrations" src=".github/cmd_connection_disconnect.gif" />
 
 ## License
 
