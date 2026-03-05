@@ -1,0 +1,46 @@
+version: 2
+
+archives:
+  - files:
+      - LICENSE
+      - README.md
+    formats: [ 'zip' ]
+    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - binary: '{{ .ProjectName }}_v{{ .Version }}'
+    flags:
+      - -trimpath
+    main: ./cmd/broker-moc
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    goos:
+      - darwin
+      - linux
+      - windows
+    ignore:
+      - goos: windows
+        goarm: 6
+    ldflags:
+      - "-s -w -X main.version={{.Version}}"
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+checksum:
+  algorithm: sha256
+  name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
+
+dist: build
+
+env:
+  - CGO_ENABLED=0
+
+project_name: "broker-moc"
+
+release:
+  draft: false
