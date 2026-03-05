@@ -2,6 +2,7 @@
 # Compiled source               #
 #################################
 build/
+.release/
 
 #################################
 # Golang files (with tooling)   #
